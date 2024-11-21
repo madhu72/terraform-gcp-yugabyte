@@ -14,6 +14,7 @@ resource "google_compute_firewall" "YugaByte-Firewall" {
       protocol = "tcp"
       ports = ["9000","7000","6379","9042","5433","22"]
   }
+  source_ranges =  ["0.0.0.0/0"]
   target_tags = ["${var.prefix}${var.cluster_name}"]
 }
 resource "google_compute_firewall" "YugaByte-Intra-Firewall" {
