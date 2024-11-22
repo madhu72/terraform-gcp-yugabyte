@@ -69,7 +69,7 @@ variable "region_name" {
 }
 variable "disk_size" {
   description = "Disk size for YugaByte DB nodes"
-  default     = "50"
+  default     = "100"
   type        = string
 }
 variable "prefix" {
