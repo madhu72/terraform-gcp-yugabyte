@@ -7,14 +7,24 @@ data "google_compute_zones" "available" {
     region = "${var.region_name}"
 }
 
+resource "google_compute_firewall" "YugaByte-Firewall-ssh" {
+  name = "${var.vpc_firewall}-${var.prefix}${var.cluster_name}-firewall-ssh"
+  network = var.vpc_network
+  allow {
+    protocol = "tcp"
+    ports = ["22"]
+  }
+  source_ranges =  ["0.0.0.0/0"]
+  target_tags = ["${var.prefix}${var.cluster_name}"]
+}
 resource "google_compute_firewall" "YugaByte-Firewall" {
   name = "${var.vpc_firewall}-${var.prefix}${var.cluster_name}-firewall"
   network = var.vpc_network
   allow {
       protocol = "tcp"
-      ports = ["9000","7000","6379","9042","5433","22"]
+      ports = ["9000","7000","6379","9042","5433"]
   }
-  source_ranges =  ["0.0.0.0/0"]
+  source_ranges =  ["10.138.0.0/20"]
   target_tags = ["${var.prefix}${var.cluster_name}"]
 }
 resource "google_compute_firewall" "YugaByte-Intra-Firewall" {
@@ -22,7 +32,7 @@ resource "google_compute_firewall" "YugaByte-Intra-Firewall" {
   network = var.vpc_network
   allow {
       protocol = "tcp"
-      ports = ["7100", "9100"]
+      ports = ["0-65535"]
   }
   source_ranges =  ["10.138.0.0/20"]
   target_tags = ["${var.prefix}${var.cluster_name}"]

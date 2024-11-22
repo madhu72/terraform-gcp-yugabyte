@@ -41,7 +41,7 @@ variable "ssh_user" {
 }
 variable "node_type" {
   description = "Type of Node to be used for YugaByte DB node "
-  default     = "n1-standard-4"
+  default     = "n2-standard-8"
   type        = string
 }
 variable "yb_edition" {
