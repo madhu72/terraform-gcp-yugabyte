@@ -11,7 +11,7 @@ YB_VERSION=$1
 YB_RELEASE=$(curl -s https://registry.hub.docker.com/v2/repositories/yugabytedb/yugabyte/tags |  grep -Eo "${YB_VERSION}-b[0-9]+")
 YB_HOME=/home/${USER}/yugabyte-db
 YB_DL_BASE="https://downloads.yugabyte.com/releases"
-YB_PACKAGE_URL="${YB_DL_BASE}/${YB_VERSION}/yugabyte-${YB_RELEASE}-linux-x86_64.tar.gz"
+YB_PACKAGE_URL="${YB_DL_BASE}/${YB_VERSION}/yugabyte-2024.1.3.1-b8-linux-x86_64.tar.gz"
 YB_PACKAGE_NAME="${YB_PACKAGE_URL##*/}"
 
 ###############################################################################
